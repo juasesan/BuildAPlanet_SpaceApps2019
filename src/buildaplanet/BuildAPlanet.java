@@ -11,7 +11,7 @@ public class BuildAPlanet extends Application {
         
         PaneOrganizer juego = new PaneOrganizer(primaryStage);       
         
-        Scene scene = new Scene(juego.getRootMenu(), 300, 250);
+        Scene scene = new Scene(juego.getRoot(), 900, 600);
         
         primaryStage.setTitle("Build a Planet");
         primaryStage.setScene(scene);
