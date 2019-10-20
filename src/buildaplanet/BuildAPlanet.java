@@ -2,6 +2,7 @@ package buildaplanet;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class BuildAPlanet extends Application {
@@ -12,8 +13,8 @@ public class BuildAPlanet extends Application {
         PaneOrganizer juego = new PaneOrganizer(primaryStage);       
  
         primaryStage.setTitle("Build a Planet");
-        
-        primaryStage.setScene(new Scene(juego.getRoot(), 1280, 720));
+        primaryStage.getIcons().add(new Image(BuildAPlanet.class.getResourceAsStream("/recursos/PantallaPrincipal/icono.png")));
+        primaryStage.setScene(new Scene(juego.getRoot(), 1350, 723));
         primaryStage.getScene().getStylesheets().add(getRutaCssFile());
         primaryStage.show();
     }

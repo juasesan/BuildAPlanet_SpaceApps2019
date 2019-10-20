@@ -26,6 +26,7 @@ public class PaneOrganizer {
     
     private Stage primaryStage;
     private StackPane root;
+    private Image imagenFondo;
     
     
     public PaneOrganizer(Stage primaryStage){
@@ -47,13 +48,15 @@ public class PaneOrganizer {
      */  
     public StackPane setMenu(){
         StackPane rootMenu = new StackPane();
-        BackgroundImage myBI= new BackgroundImage(new Image("recursos/PantallaPrincipal/fondoPrincipal.gif",1280,720,true,true),
-        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        /*
+        imagenFondo = new Image("recursos/PantallaPrincipal/fondoPrincipal.gif",1350,723,true,true);
+        BackgroundImage myBI= new BackgroundImage(imagenFondo,BackgroundRepeat.REPEAT, 
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
           BackgroundSize.DEFAULT);
         //then you set to your node
         rootMenu.setBackground(new Background(myBI));
         //Desarrollo del menu principal
-        
+        */
         VBox center=new VBox();
         GridPane cells=new GridPane();
         cells.setAlignment(Pos.CENTER);
@@ -71,7 +74,7 @@ public class PaneOrganizer {
         JFXButton close=new JFXButton("Salir");
         JFXButton starGame=new JFXButton("Crear sistema");
         starGame.getStyleClass().add("jfx-button-dialog");
-        starGame.setOnAction((t)->{this.primaryStage.getScene().setRoot(new GamePane(this.primaryStage).getRoot());});
+        starGame.setOnAction((t)->{this.primaryStage.getScene().setRoot(new GamePane(this.primaryStage, imagenFondo).getRoot());});
         close.setOnAction((t)->{this.primaryStage.close();});
         play.setOnAction((t)->{
             

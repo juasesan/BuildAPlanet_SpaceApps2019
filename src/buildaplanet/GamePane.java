@@ -37,11 +37,12 @@ public class GamePane {
     private StackPane lastRoot;
     private StackPane gameDisplay;
     private VBox planetBox;
+    private Image img;
 
     public GamePane() {
     }
 
-    public GamePane(Stage primaryStage) {
+    public GamePane(Stage primaryStage, Image img) {
         this.primaryStage = primaryStage;
         //this.root = root;
         this.root=new BorderPane();
@@ -56,9 +57,9 @@ public class GamePane {
     }
     
     public ImageView getSky(){
-        InputStream rutaStream=getClass().getResourceAsStream("/recursos/PantallaPrincipal/fondoPrincipal.jpg");
-        Image im=new Image(rutaStream);
-        ImageView img=new ImageView(im);
+        InputStream rutaStream=getClass().getResourceAsStream("/recursos/PantallaPrincipal/fondoJuego.jpg");
+        this.img = new Image(rutaStream);
+        ImageView img=new ImageView(this.img);
         
         return img;
     }
