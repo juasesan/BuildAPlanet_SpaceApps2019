@@ -42,7 +42,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
 		import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
->>>>>>> Notificaciones y personalizacion de panel gamePane
+
 /**
  *
  * @author Josue
@@ -180,7 +180,7 @@ public class GamePane {
         });
 
         resumeSim.getStyleClass().add("jfx-buttonGamePane");
-        JFXButton pauseSim=new JFXButton("||");
+        
         pauseSim.getStyleClass().add("jfx-buttonGamePane");
 
         toolBox.getChildren().addAll(volver,addPlanet,new Separator(Orientation.VERTICAL),resumeSim,pauseSim);

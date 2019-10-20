@@ -6,13 +6,16 @@ import circular.CircularSimplyLinkedList;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
+<<<<<<< HEAD
 import java.io.InputStream;
+=======
 import java.io.File;
 import java.net.URI;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+>>>>>>> Pantalla inicio
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -162,7 +165,7 @@ public class PaneOrganizer {
         return systemForm;
     }
     
-
+<<<<<<< HEAD
     public ImageView getEntity(String name){
         InputStream rutaStream=getClass().getResourceAsStream("/sprites/"+name+".png");
         Image im=new Image(rutaStream,60,60,true,true);
@@ -170,7 +173,7 @@ public class PaneOrganizer {
         
         return img;
     }
-
+=======
     public class Animacion implements Runnable{
         
         
@@ -225,5 +228,6 @@ public class PaneOrganizer {
         
     }
 
+>>>>>>> Pantalla inicio
     
 }
