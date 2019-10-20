@@ -1,4 +1,5 @@
 nbproject/
 build/
 dist/
-/PantallaPrincipal/
+**/PantallaPrincipal/
+src/recursos/PantallaPrincipal/
