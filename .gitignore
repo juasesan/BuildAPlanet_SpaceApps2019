@@ -1,5 +1,6 @@
 nbproject/
 build/
 dist/
-**/PantallaPrincipal/
-src/recursos/PantallaPrincipal/
+
+*.gif
+*.xml
