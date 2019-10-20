@@ -5,6 +5,8 @@
  */
 package Elementos;
 
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author User
@@ -12,6 +14,7 @@ package Elementos;
 public class Planeta extends CuerpoCeleste{
     double distance;
     double pressure;
+    ImageView imagen;
     public Planeta(String name, double mass, double radius, 
                     double angularSpeed, double mediumPower, double temperature, 
                     double distance, double pressure){
@@ -25,5 +28,13 @@ public class Planeta extends CuerpoCeleste{
         this.temperature = temperature;
         this.distance = distance;
         this.pressure = pressure;
+    }
+    
+    public Planeta(ImageView i){
+        this.imagen = i;
+    }
+    
+    public ImageView getImage(){
+        return imagen;
     }
 }

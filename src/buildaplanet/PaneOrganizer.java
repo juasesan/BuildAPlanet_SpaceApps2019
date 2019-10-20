@@ -1,5 +1,6 @@
 package buildaplanet;
 
+import Elementos.SistemaSolar;
 import static buildaplanet.Util.dialogoMaterial;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -142,6 +143,8 @@ public class PaneOrganizer {
         
         systemForm.getChildren().addAll(systemName,starLabel,starForm);
         
+        SistemaSolar sis = new SistemaSolar();
+        BuildAPlanet.sistemas.add(sis);
         return systemForm;
     }
     

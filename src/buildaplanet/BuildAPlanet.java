@@ -1,11 +1,14 @@
 package buildaplanet;
 
+import Elementos.SistemaSolar;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class BuildAPlanet extends Application {
+    public static ArrayList<SistemaSolar> sistemas = new ArrayList();
     
     @Override
     public void start(Stage primaryStage) {

@@ -19,7 +19,7 @@ import javafx.util.Duration;
  */
 public class SistemaSolar {
     String name;
-    public ArrayList<CuerpoCeleste> planets;
+    public static ArrayList<Planeta> planets = new ArrayList();
     private int planetsMax;
     private boolean stable = true;
     

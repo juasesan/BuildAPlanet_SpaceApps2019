@@ -5,6 +5,9 @@
  */
 package buildaplanet;
 
+import Elementos.CuerpoCeleste;
+import Elementos.Planeta;
+import Elementos.SistemaSolar;
 import static buildaplanet.Util.dialogoMaterial;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -13,8 +16,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -33,6 +39,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Ellipse;
+import javafx.util.Duration;
 /**
  *
  * @author Josue
@@ -49,6 +57,8 @@ public class GamePane {
     private ScrollPane scrollP;
     private Random rd;
     private Point2D origen;
+    private ArrayList<PathTransition> paths = new ArrayList();
+    public boolean pause = false;
 
     public GamePane() {
     }
@@ -73,6 +83,7 @@ public class GamePane {
         root.setCenter(gameDisplay);
         star.setLayoutX(origen.getX());
         star.setLayoutY(origen.getY());
+        System.out.println(origen.getX() +"--------"+origen.getY());
         gameDisplay.getChildren().add(star);
         
     }
@@ -107,7 +118,9 @@ public class GamePane {
         JFXButton addPlanetHandle=new JFXButton("Añadir planeta");
         addPlanetHandle.setOnAction((t)->{
             //logica que anade el planeta al sistema
-            this.planetBox.getChildren().add(getEntity());
+            Planeta planeta = new Planeta(getEntity());
+            this.planetBox.getChildren().add(planeta.getImage());
+            SistemaSolar.planets.add(planeta);
         });
         
         JFXButton addPlanet=new JFXButton("Añadir planeta");
@@ -118,7 +131,22 @@ public class GamePane {
             
         });
         JFXButton resumeSim=new JFXButton("|>");
+        resumeSim.setOnAction(e -> {
+            if(pause == false) putPlanets();
+            else{
+                for(PathTransition p: paths){
+                    p.play();
+                }
+                pause = false;
+            }});
         JFXButton pauseSim=new JFXButton("||");
+        pauseSim.setOnAction(e -> {
+            for(PathTransition p: paths){
+                p.pause();
+                
+            }
+            pause = true;
+        });
         toolBox.getChildren().addAll(volver,addPlanet,new Separator(Orientation.VERTICAL),resumeSim,pauseSim);
         return toolBox;
     }
@@ -137,11 +165,11 @@ public class GamePane {
         Label starLabel=new Label("Datos del planeta");
         
         JFXTextField dato1=new JFXTextField();
-        dato1.setPromptText("Masa");
+        dato1.setPromptText("Masa [Kg]*10^6");
         JFXTextField dato2=new JFXTextField();
-        dato2.setPromptText("Diametro");
+        dato2.setPromptText("Diametro [Km]*10^6");
         JFXTextField dato3=new JFXTextField();
-        dato3.setPromptText("Distancia a la estrella");
+        dato3.setPromptText("Distancia a la estrella[Km]*10^6");
         subForm.getChildren().addAll(dato1,dato2,dato3);
         
         systemPlanet.getChildren().addAll(starLabel,subForm);
@@ -185,12 +213,39 @@ public class GamePane {
         
         return img;
     }
+    
     public ImageView getEntity(String name){
         InputStream rutaStream=getClass().getResourceAsStream("/sprites/"+name+".jpg");
         Image im=new Image(rutaStream,25,25,true,true);
         ImageView img=new ImageView(im);
         
         return img;
+    }
+    
+    public void putPlanets(){
+        double posx = this.origen.getX();
+        double posy = this.origen.getY();
+        int ref = 50;
+        int refy = 25;
+        int duration = 2;
+        
+        for(Planeta i : SistemaSolar.planets){
+            PathTransition p = new PathTransition();
+            p.setPath(new Ellipse(0,0, 75+ref, 0+refy));
+            p.setNode(i.getImage());
+            p.setCycleCount(Timeline.INDEFINITE);
+            p.setDuration(Duration.seconds(duration));
+            p.setAutoReverse(false);
+            p.play();
+            gameDisplay.getChildren().add(i.getImage());
+            ref += 85;
+            refy += 60;
+            duration += 3;
+            paths.add(p);
+        }
+        
+        planetBox.getChildren().clear();
+        planetBox.setVisible(false);
     }
     
 }
