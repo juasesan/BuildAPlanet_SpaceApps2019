@@ -40,7 +40,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
-import javafx.util.Duration;
+		import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+>>>>>>> Notificaciones y personalizacion de panel gamePane
 /**
  *
  * @author Josue
@@ -77,6 +79,7 @@ public class GamePane {
         this.scrollP=new ScrollPane();
         planetBox=setPlanetsBox();
         scrollP.setContent(planetBox);
+        scrollP.getStyleClass().add("scroll-pane");
         root.setLeft(scrollP);
         root.setBottom(setToolBox());
         //gameDisplay.getChildren().add(getSky());
@@ -85,6 +88,26 @@ public class GamePane {
         star.setLayoutY(origen.getY());
         System.out.println(origen.getX() +"--------"+origen.getY());
         gameDisplay.getChildren().add(star);
+        generateNotification();
+    }
+    
+    public void generateNotification(){
+        InputStream rutaStream=getClass().getResourceAsStream("/recursos/PantallaPrincipal/qmark.png");
+        Image img = new Image(rutaStream,55,55,true,true);
+        ImageView ig=new ImageView(img);
+        
+        
+        Notifications noti=Notifications.create()
+                .title("Dato Curioso")
+                .text("En Marte hay hasta un 62% menos\n de gravedad que en la Tierra,"
+                        + "siendo\n el lugar ideal para aquellos que\n quieren bajar de peso en poco tiempo,\n"
+                        + " pues una persona que en nuestro planeta\n pesa,por ejemplo, 100 kg,"
+                        + " pesaría\n apenas unos 40 kg en el planeta rojo.")
+                .graphic(ig).darkStyle()
+                .hideAfter(Duration.seconds(6))
+                .position(Pos.TOP_RIGHT);
+        
+        noti.show();
         
     }
     
@@ -99,7 +122,10 @@ public class GamePane {
     public VBox setPlanetsBox(){
         
         VBox planetBox=new VBox();
-        planetBox.getChildren().add(new Label("Planetas"));
+        planetBox.getStyleClass().add("planetBox");
+        Label titulo=new Label("Planetas");
+        titulo.getStyleClass().add("labelPlanetas");
+        planetBox.getChildren().add(titulo);
         planetBox.setAlignment(Pos.CENTER);
         planetBox.setSpacing(10);
         planetBox.setPadding(new Insets(5));
@@ -109,11 +135,14 @@ public class GamePane {
     public HBox setToolBox(){
         
         HBox toolBox=new HBox();
+        toolBox.getStyleClass().add("optionsBox");
         toolBox.setAlignment(Pos.CENTER);
         toolBox.setSpacing(10);
         toolBox.setPadding(new Insets(5));
         
         JFXButton volver=new JFXButton("Menú principal");
+        
+        volver.getStyleClass().add("jfx-buttonGamePane");
         volver.setOnAction((y)->{this.primaryStage.getScene().setRoot(lastRoot);});
         JFXButton addPlanetHandle=new JFXButton("Añadir planeta");
         addPlanetHandle.setOnAction((t)->{
@@ -125,12 +154,14 @@ public class GamePane {
         
         JFXButton addPlanet=new JFXButton("Añadir planeta");
         
+        addPlanet.getStyleClass().add("jfx-buttonGamePane");
         addPlanet.setOnAction((t)->{
             dialogoMaterial(gameDisplay,"Configuración del planeta",(Node)getPlanetForm(),addPlanetHandle);
         //Pane panel,String titulo, Node cuerpo, JFXButton boton
             
         });
         JFXButton resumeSim=new JFXButton("|>");
+
         resumeSim.setOnAction(e -> {
             if(pause == false) putPlanets();
             else{
@@ -147,6 +178,11 @@ public class GamePane {
             }
             pause = true;
         });
+
+        resumeSim.getStyleClass().add("jfx-buttonGamePane");
+        JFXButton pauseSim=new JFXButton("||");
+        pauseSim.getStyleClass().add("jfx-buttonGamePane");
+
         toolBox.getChildren().addAll(volver,addPlanet,new Separator(Orientation.VERTICAL),resumeSim,pauseSim);
         return toolBox;
     }
