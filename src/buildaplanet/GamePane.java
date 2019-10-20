@@ -39,6 +39,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.geometry.Point2D;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.shape.Ellipse;
 		import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -89,6 +94,15 @@ public class GamePane {
         System.out.println(origen.getX() +"--------"+origen.getY());
         gameDisplay.getChildren().add(star);
         generateNotification();
+        
+        InputStream rutaStream=getClass().getResourceAsStream("/recursos/PantallaPrincipal/fondoJuego.jpg");
+        this.img = new Image(rutaStream);
+        Image imagenFondo = new Image("recursos/PantallaPrincipal/fondoJuego.jpg",1440,900,true,true);
+        BackgroundImage myBI= new BackgroundImage(imagenFondo,BackgroundRepeat.NO_REPEAT, 
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+          BackgroundSize.DEFAULT);
+        //then you set to your node
+        root.setBackground(new Background(myBI));
     }
     
     public void generateNotification(){
@@ -104,7 +118,7 @@ public class GamePane {
                         + " pues una persona que en nuestro planeta\n pesa,por ejemplo, 100 kg,"
                         + " pesaría\n apenas unos 40 kg en el planeta rojo.")
                 .graphic(ig).darkStyle()
-                .hideAfter(Duration.seconds(6))
+                .hideAfter(Duration.seconds(6)).owner(this.primaryStage)
                 .position(Pos.TOP_RIGHT);
         
         noti.show();
@@ -202,10 +216,13 @@ public class GamePane {
         
         JFXTextField dato1=new JFXTextField();
         dato1.setPromptText("Masa [Kg]*10^6");
+        dato1.setLabelFloat(true);
         JFXTextField dato2=new JFXTextField();
+        dato2.setLabelFloat(true);
         dato2.setPromptText("Diametro [Km]*10^6");
         JFXTextField dato3=new JFXTextField();
         dato3.setPromptText("Distancia a la estrella[Km]*10^6");
+        dato3.setLabelFloat(true);
         subForm.getChildren().addAll(dato1,dato2,dato3);
         
         systemPlanet.getChildren().addAll(starLabel,subForm);

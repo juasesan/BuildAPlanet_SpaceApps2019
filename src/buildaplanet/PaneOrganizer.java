@@ -135,13 +135,16 @@ public class PaneOrganizer {
         
         JFXTextField systemName=new JFXTextField();
         systemName.setPromptText("Ingrese nombre de su sistema");
+        systemName.setLabelFloat(true);
         Label starLabel=new Label("Datos de estrella principal");
         
         
         JFXTextField dato1=new JFXTextField();
         dato1.setPromptText("Masa");
+        dato1.setLabelFloat(true);
         JFXTextField dato2=new JFXTextField();
         dato2.setPromptText("Diametro");
+        dato2.setLabelFloat(true);
         Separator sep=new Separator(Orientation.HORIZONTAL);
         Label campoTitle=new Label("Proporciones");
         
