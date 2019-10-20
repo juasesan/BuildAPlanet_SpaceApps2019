@@ -13,5 +13,8 @@ public abstract class CuerpoCeleste {
     String name;
     double mass;
     double radius;
-    
+    double density; 
+    double angularSpeed;
+    double mediumPower;
+    double temperature;
 }
