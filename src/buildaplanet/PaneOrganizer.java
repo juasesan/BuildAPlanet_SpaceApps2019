@@ -8,6 +8,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -15,12 +23,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PaneOrganizer {
+    
     private Stage primaryStage;
     private StackPane root;
     
-    PaneOrganizer(Stage primaryStage){
+    
+    public PaneOrganizer(Stage primaryStage){
         this.primaryStage = primaryStage;
+       
+        System.out.println(getRutaCssFile());
+        System.out.println(this.primaryStage.getScene());
+        if(this.primaryStage.getScene() != null) {
+            System.out.println("HOLA");
+            this.primaryStage.getScene().getStylesheets().clear();
+            this.primaryStage.getScene().getStylesheets().add(getRutaCssFile());
+        }
         root=setMenu();
+        
     }
     
     /**
@@ -28,21 +47,30 @@ public class PaneOrganizer {
      */  
     public StackPane setMenu(){
         StackPane rootMenu = new StackPane();
+        BackgroundImage myBI= new BackgroundImage(new Image("recursos/PantallaPrincipal/fondoPrincipal.gif",1280,720,true,true),
+        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+          BackgroundSize.DEFAULT);
+        //then you set to your node
+        rootMenu.setBackground(new Background(myBI));
         //Desarrollo del menu principal
-        Label title=new Label("Build A Planet");
+        
         VBox center=new VBox();
         GridPane cells=new GridPane();
         cells.setAlignment(Pos.CENTER);
-        cells.setVgap(10);
-        cells.setVgap(20);
+        cells.setVgap(30);
+        //cells.setVgap(20);
         center.setAlignment(Pos.CENTER);
-        center.setSpacing(20);
-        center.getChildren().addAll(title,cells);
+        center.setSpacing(68);
+        
+        ImageView img = new ImageView(new Image("/recursos/PantallaPrincipal/logoNasa2.png", 480, 203, true, true));
+        
+        center.getChildren().addAll(img,cells);
         
         
         JFXButton play=new JFXButton("Jugar");
         JFXButton close=new JFXButton("Salir");
         JFXButton starGame=new JFXButton("Crear sistema");
+        starGame.getStyleClass().add("jfx-button-dialog");
         starGame.setOnAction((t)->{this.primaryStage.getScene().setRoot(new GamePane(this.primaryStage).getRoot());});
         close.setOnAction((t)->{this.primaryStage.close();});
         play.setOnAction((t)->{
@@ -57,6 +85,7 @@ public class PaneOrganizer {
         cells.addRow(1, close);
         
         rootMenu.getChildren().add(center);
+        rootMenu.setFocusTraversable(true);
         return rootMenu;
     }
 
@@ -64,6 +93,9 @@ public class PaneOrganizer {
         return root;
     }
     
+    public String getRutaCssFile(){
+        return PaneOrganizer.class.getResource("/recursos/panelPrincipal.css").toExternalForm();
+    }
     
     public VBox getSubPanelInicio(){
        

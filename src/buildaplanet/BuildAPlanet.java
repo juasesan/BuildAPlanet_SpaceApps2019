@@ -10,11 +10,11 @@ public class BuildAPlanet extends Application {
     public void start(Stage primaryStage) {
         
         PaneOrganizer juego = new PaneOrganizer(primaryStage);       
-        
-        Scene scene = new Scene(juego.getRoot(), 900, 600);
-        
+ 
         primaryStage.setTitle("Build a Planet");
-        primaryStage.setScene(scene);
+        
+        primaryStage.setScene(new Scene(juego.getRoot(), 1280, 720));
+        primaryStage.getScene().getStylesheets().add(getRutaCssFile());
         primaryStage.show();
     }
 
@@ -23,6 +23,10 @@ public class BuildAPlanet extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    public String getRutaCssFile(){
+        return BuildAPlanet.class.getResource("/recursos/panelPrincipal.css").toExternalForm();
     }
     
 }
