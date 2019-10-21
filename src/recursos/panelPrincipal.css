@@ -12,6 +12,11 @@ and open the template in the editor.
     -fx-background-image: url("recursos/PantallaPrincipal/fondoPrincipal.gif");
 }
 
+.tooltip{
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14;
+}
+
 .label{
     -fx-font-family: "Consolas";
 }

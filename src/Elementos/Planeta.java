@@ -5,6 +5,7 @@
  */
 package Elementos;
 
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 
 /**
@@ -15,6 +16,16 @@ public class Planeta extends CuerpoCeleste{
     double distance;
     double pressure;
     ImageView imagen;
+    
+    public Planeta(double masa, double diametro, double distancia, ImageView i){
+        this.mass = masa; this.radius = (float) diametro/2;
+        this.distance = distancia; this.imagen = i;
+        Tooltip tooltip = new Tooltip("Masa: "+masa+"\nDiametro: "+diametro+"\nDistancia: "+distancia);
+        tooltip.getStyleClass().add("tooltip");
+        this.imagen.setPickOnBounds(true);
+        Tooltip.install(this.imagen, tooltip);
+    }
+    
     public Planeta(String name, double mass, double radius, 
                     double angularSpeed, double mediumPower, double temperature, 
                     double distance, double pressure){

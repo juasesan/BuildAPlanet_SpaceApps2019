@@ -10,6 +10,8 @@ import Elementos.Planeta;
 import Elementos.SistemaSolar;
 import static buildaplanet.Util.dialogoMaterial;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.Dimension;
@@ -45,6 +47,8 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 		import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -158,19 +162,35 @@ public class GamePane {
         
         volver.getStyleClass().add("jfx-buttonGamePane");
         volver.setOnAction((y)->{this.primaryStage.getScene().setRoot(lastRoot);});
-        JFXButton addPlanetHandle=new JFXButton("Añadir planeta");
-        addPlanetHandle.setOnAction((t)->{
-            //logica que anade el planeta al sistema
-            Planeta planeta = new Planeta(getEntity());
-            this.planetBox.getChildren().add(planeta.getImage());
-            SistemaSolar.planets.add(planeta);
-        });
+        
         
         JFXButton addPlanet=new JFXButton("Añadir planeta");
         
         addPlanet.getStyleClass().add("jfx-buttonGamePane");
         addPlanet.setOnAction((t)->{
-            dialogoMaterial(gameDisplay,"Configuración del planeta",(Node)getPlanetForm(),addPlanetHandle);
+            VBox formulario = (VBox) getPlanetForm();
+            JFXDialog dialogo;
+            JFXDialogLayout contenido = new JFXDialogLayout();
+            Text tt = new Text("Configuración del planeta");
+            tt.setFont(new Font(15));
+            contenido.setHeading(tt);
+            contenido.setBody(formulario);
+            dialogo = new JFXDialog((StackPane) gameDisplay, contenido, JFXDialog.DialogTransition.CENTER);
+            JFXButton addPlanetHandle = new JFXButton("Añadir planeta");
+            addPlanetHandle.setOnAction((u) -> {
+                //logica que anade el planeta al sistema
+                VBox info = (VBox) formulario.getChildren().get(1);
+                String masa = ((JFXTextField) info.getChildren().get(0)).getText();
+                String diametro = ((JFXTextField) info.getChildren().get(1)).getText();
+                String distancia = ((JFXTextField) info.getChildren().get(2)).getText();
+                Planeta planeta = new Planeta(Double.valueOf(masa), Double.valueOf(diametro), Double.valueOf(distancia), getEntity());
+                this.planetBox.getChildren().add(planeta.getImage());
+                SistemaSolar.planets.add(planeta);
+            });
+            contenido.setActions(addPlanetHandle);
+            dialogo.show();
+
+            //dialogoMaterial(gameDisplay,"Configuración del planeta",(Node)getPlanetForm(),addPlanetHandle);
         //Pane panel,String titulo, Node cuerpo, JFXButton boton
             
         });
