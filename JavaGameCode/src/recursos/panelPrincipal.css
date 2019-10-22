@@ -1,0 +1,120 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/10/2019, 12:34:05 AM
+    Author     : emman
+*/
+
+.border {
+    -fx-background-image: url("recursos/PantallaPrincipal/fondoPrincipal.gif");
+}
+
+.tooltip{
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14;
+}
+
+.label{
+    -fx-font-family: "Consolas";
+}
+
+.text-field{
+    -fx-font-family: "Consolas";
+}
+
+.text{
+    -fx-font-family: "Consolas";
+}
+
+.jfx-button {
+    -fx-font-family: "Consolas";
+     -jfx-button-type: RAISED;
+     -fx-background-color: #23374d;
+     -fx-border-color: #1089ff; 
+     -fx-text-fill: #ffffff;
+     -fx-border-width: 2;
+     -fx-font-size: 20;
+     -fx-border-radius: 6pt;
+     -fx-background-radius: 6pt;
+     -fx-padding: 10;
+     -fx-pref-width: 130px;
+     
+}
+
+.jfx-button-dialog {
+     -jfx-button-type: RAISED;
+     -fx-background-color: #23374d;
+     -fx-border-color: #1089ff; 
+     -fx-text-fill: #ffffff;
+     -fx-border-width: 0;
+     -fx-font-size: 15;
+     -fx-border-radius: 6pt;
+     -fx-background-radius: 6pt;
+     -fx-padding: 10;
+     -fx-pref-width: 130px;
+     
+}
+.jfx-buttonGamePane {
+    -fx-font-family: "Consolas";
+     -jfx-button-type: RAISED;
+     -fx-background-color: #23374d;
+     -fx-border-color: #1089ff; 
+     -fx-text-fill: #ffffff;
+     -fx-border-width: 2;
+     -fx-font-size: 15;
+     -fx-border-radius: 6pt;
+     -fx-background-radius: 6pt;
+     -fx-padding: 10;
+     -fx-pref-width: 160px;
+     
+}
+
+.optionsBox{
+   -fx-background-color: #000000;
+    
+}
+
+.labelPlanetas{
+    -fx-font-family: "Consolas";
+    -fx-font-width: bold;
+    -fx-font-size: 16;
+}
+
+.scroll-pane {
+    -fx-base: #000000;
+    -fx-background-color: transparent;
+     -fx-border-width: 2;
+    -fx-border-color: #292b2d;
+    
+}
+
+.scroll-pane .corner{
+     -fx-background-color: transparent;
+     
+}
+
+.scroll-bar .track {
+    -fx-background-color: #3c3f41;
+    
+}
+
+.scroll-bar .thumb {
+    -fx-background-radius: 5;
+    -fx-background-color: #565656;
+    -fx-border-width: 8;
+    -fx-background-insets: 2,0,0;
+}
+
+.scroll-bar .decrement-button,.scroll-bar .increment-button {
+    -fx-background-color: #3c3f41;
+    -fx-background-insets: 0,10,0,0;
+}
+
+.scroll-bar .increment-button increment-arrow,
+.scroll-bar .decrement-button decrement-arrow{
+    -fx-background-color: transparent;
+    -fx-padding: -2;
+}
