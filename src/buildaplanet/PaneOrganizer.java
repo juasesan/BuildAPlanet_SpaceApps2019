@@ -47,10 +47,8 @@ public class PaneOrganizer {
     public PaneOrganizer(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.end = false;
-        System.out.println(getRutaCssFile());
-        System.out.println(this.primaryStage.getScene());
         if(this.primaryStage.getScene() != null) {
-            System.out.println("HOLA");
+            
             this.primaryStage.getScene().getStylesheets().clear();
             this.primaryStage.getScene().getStylesheets().add(getRutaCssFile());
         }
@@ -192,7 +190,7 @@ public class PaneOrganizer {
                 URI u = f.toURI();
                 //img.setImage(new Image(u.toString(), 480, 203, true, true));
                 c.addLast(u.toString());
-                System.out.println(frame);
+                
                 if(b) frame++;
                 else frame--;
                 if(frame==21){
